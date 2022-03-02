@@ -29,7 +29,7 @@
             FROM
             ' . $this->table . 'a
             ORDER BY
-                p.id';
+                a.id';
 
         //Prepare Statement
 
