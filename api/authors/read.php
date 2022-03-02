@@ -6,7 +6,7 @@ $author = new Author($db);
 
 //read query
 
-$result = $post->read();
+$result = $author->read();
 
 //Get row count
 
@@ -38,9 +38,11 @@ if($num > 0){
         
         //Convert to JSON & output
 
-        echo json_encode($author_arr);
+       
 
     }
+
+    echo json_encode($author_arr);
 
 
 }else{
@@ -48,7 +50,7 @@ if($num > 0){
     //No authors
 
     echo json_encode(
-        array('message' => 'No authors found');
+        array('message' => 'No authors found')
     );
 
 }

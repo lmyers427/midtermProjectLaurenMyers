@@ -27,7 +27,7 @@
             $query = 'SELECT a.id, 
             a.author
             FROM
-            ' . $this->table . 'a
+            ' . $this->table . ' a
             ORDER BY
                 a.id';
 
