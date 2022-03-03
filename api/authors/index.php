@@ -44,7 +44,9 @@ switch ($method) {
 
     case 'DELETE':
 
-        //include_once 'delete.php';
+        include_once 'delete.php';
+
+        break;
 
     default:
 
