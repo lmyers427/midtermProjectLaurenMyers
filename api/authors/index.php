@@ -34,7 +34,7 @@ switch ($method) {
 
     case 'POST':
         
-        //include_once 'create.php';
+        include_once 'create.php';
         break;
 
     case 'PUT':
