@@ -25,7 +25,7 @@ switch ($method) {
          include_once 'read_single.php';
         
         break;
-    
+
     case 'GET':
 
         include_once 'read.php';
