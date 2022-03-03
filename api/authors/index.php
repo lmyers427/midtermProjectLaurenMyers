@@ -20,14 +20,16 @@ $db = $database->connect();
 
 switch ($method) {
 
+    case 'GET' && isset($_GET['id']):
+
+         include_once 'read_single.php';
+        
+        break;
+    
     case 'GET':
 
-        //Check ID
-        if(isset($_GET['id'])
-         include_once 'read_single.php';
-        else
-         include_once 'read.php';
-        //include_once 'read.php';
+        include_once 'read.php';
+
         break;
 
     case 'POST':
