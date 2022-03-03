@@ -105,7 +105,6 @@
 
           return false;
         }
-
         //Update Category
         public function update(){
             //Create query
@@ -117,34 +116,34 @@
                 WHERE
                     id = :id';
 
-          //Prepare statement 
+        //Prepare statement 
 
-          $stmt = $this->conn->prepare($query);
+        $stmt = $this->conn->prepare($query);
 
-          //Clean data
+        //Clean data
 
-          $this->category = htmlspecialchars(strip_tags($this->category));
-          $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->category = htmlspecialchars(strip_tags($this->category));
+        $this->id = htmlspecialchars(strip_tags($this->id));
 
-          //Bind data
-          $stmt->bindParam(':category', $this->category);
-          $stmt->bindParam(':id', $this->id);
-          
-          //Execute query
-          if($stmt->execute()){
-              
+        //Bind data
+        $stmt->bindParam(':category', $this->category);
+        $stmt->bindParam(':id', $this->id);
+        
+        //Execute query
+        if($stmt->execute()){
+            
             return true;
 
-          }
+        }
 
-          //Print error if something is not right
-          printf("Error: %s.\n", $stmt->error);
+        //Print error if something is not right
+        printf("Error: %s.\n", $stmt->error);
 
-          return false;
+        return false;
         }
 
 
-        //Delete Author
+        //Delete Category
 
         public function delete(){
             //Create query

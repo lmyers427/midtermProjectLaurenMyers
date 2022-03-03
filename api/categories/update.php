@@ -10,20 +10,20 @@ $data = json_decode(file_get_contents("php://input"));
 //Set ID to update
 $category->id = $data->id;
 
-$category->id = $data->category;
+$category->category = $data->category;
 
-//Update Category
+//Update Author
 
 if($category->update()){
 
     echo json_encode(
-        array('message' => 'Category Updated')
+        array('message' => 'Author Updated')
     );
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Category Not Updated')
+        array('message' => 'Author Not Updated')
     );
 }
