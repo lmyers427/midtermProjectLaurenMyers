@@ -39,7 +39,7 @@ switch ($method) {
 
     case 'PUT':
 
-        //include_once 'update.php';
+        include_once 'update.php';
         break;
 
     case 'DELETE':
