@@ -22,15 +22,11 @@ switch ($method) {
 
     case 'GET':
 
-        //Get ID
-        if(isset($_GET['id'])){
-         include_once 'read_single.php' 
-         }
-         else{
-
-          include_once 'read.php';
-
-         } 
+        //Check ID
+        if(isset($_GET['id'])
+         include_once 'read_single.php';
+        else
+         include_once 'read.php';
         //include_once 'read.php';
         break;
 
