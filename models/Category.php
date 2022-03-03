@@ -7,9 +7,9 @@
         private $conn;
         private $table = 'categories';
 
-        //Author Properties
+        //Category Properties
         public $id;
-        public $category;
+        public $name;
 
 
         // Constructor with DB
@@ -19,7 +19,7 @@
             $this->conn = $db;
         }
 
-        // Get Authors
+        // Get Categories
 
         public function read(){
 
@@ -46,12 +46,12 @@
 
             
             //Create query
-            $query = 'SELECT a.id, 
-                 a.author
+            $query = 'SELECT c.id, 
+                 c.category
             FROM
-            ' . $this->table . ' a
+            ' . $this->table . ' c
             WHERE
-                a.id = ?
+                c.id = ?
             LIMIT 0,1';
 
 
@@ -68,11 +68,11 @@
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             //Set properties
-            $this->author =$row['author'];
+            $this->category =$row['category'];
 
         }
 
-        //Create Author
+        //Create Category
 
         public function create(){
             //Create query
@@ -80,7 +80,7 @@
             $query = 'INSERT INTO ' . 
                     $this->table . '
                 SET
-                    author = :author';
+                    category = :category';
 
           //Prepare statement 
 
@@ -88,10 +88,10 @@
 
           //Clean data
 
-          $this->author = htmlspecialchars(strip_tags($this->author));
+          $this->category = htmlspecialchars(strip_tags($this->category));
 
           //Bind data
-          $stmt->bindParam(':author', $this->author);
+          $stmt->bindParam(':category', $this->category);
           
           //Execute query
           if($stmt->execute()){
@@ -106,14 +106,14 @@
           return false;
         }
 
-        //Update Author
+        //Update Category
         public function update(){
             //Create query
 
             $query = 'UPDATE ' . 
                     $this->table . '
                 SET
-                    author = :author
+                    category = :category
                 WHERE
                     id = :id';
 
@@ -123,11 +123,11 @@
 
           //Clean data
 
-          $this->author = htmlspecialchars(strip_tags($this->author));
+          $this->category = htmlspecialchars(strip_tags($this->category));
           $this->id = htmlspecialchars(strip_tags($this->id));
 
           //Bind data
-          $stmt->bindParam(':author', $this->author);
+          $stmt->bindParam(':category', $this->category);
           $stmt->bindParam(':id', $this->id);
           
           //Execute query
