@@ -26,6 +26,24 @@ switch ($method) {
         
         break;
 
+    case 'GET' && isset($_GET['authorId']) && isset($_GET['categoryId']):
+
+        include_once 'read_both.php';
+
+        break;
+
+    case 'GET' && isset($_GET['authorId']):
+
+        include_once 'read_authorId.php';
+           
+        break;
+
+    case 'GET' && isset($_GET['categoryId']):
+
+        include_once 'read_categoryId.php';
+            
+        break;
+
     case 'GET':
 
         include_once 'read.php';

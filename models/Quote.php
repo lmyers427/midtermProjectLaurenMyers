@@ -47,6 +47,8 @@
             
         }
 
+
+        //Read a single quote
         public function read_single(){
 
             
@@ -81,6 +83,95 @@
             $this->categoryId = $row['categoryId'];
 
         }
+
+        //Read all quotes associated with specific authorId
+
+        public function read_authorId(){
+
+            //Create query
+            $query = 'SELECT 
+            q.id, 
+            q.quote, 
+            q.authorId, 
+            q.categoryId 
+            FROM
+            ' . $this->table . ' q
+            WHERE
+               q.authorId = ?';
+
+        //Prepare Statement
+
+        $stmt = $this->conn->prepare($query);
+
+        //Bind Author ID
+        $stmt->bindParam(1, $this->authorId);
+
+        //Execute query
+        $stmt->execute();
+
+        return $stmt;
+            }
+
+            //Read all quotes associated with specific categoryId
+
+
+            public function read_categoryId(){
+
+                //Create query
+                $query = 'SELECT 
+                q.id, 
+                q.quote, 
+                q.authorId, 
+                q.categoryId 
+                FROM
+                ' . $this->table . ' q
+                WHERE
+                   q.categoryId = ?';
+    
+            //Prepare Statement
+    
+            $stmt = $this->conn->prepare($query);
+    
+            //Bind Author ID
+            $stmt->bindParam(1, $this->categoryId);
+    
+            //Execute query
+            $stmt->execute();
+    
+            return $stmt;
+                }
+
+    
+    //Read all quotes associated with specific authorId & categoryId
+    
+      public function read_both(){
+
+                //Create query
+                $query = 'SELECT 
+                q.id, 
+                q.quote, 
+                q.authorId, 
+                q.categoryId 
+                FROM
+                ' . $this->table . ' q
+                WHERE
+                   q.authorId = ? AND q.categoryId = ?';
+    
+            //Prepare Statement
+    
+            $stmt = $this->conn->prepare($query);
+    
+            //Bind Author ID & CategoryId
+            $stmt->bindParam(1, $this->authorId);
+
+            $stmt->bindParam(2, $this->categoryId);
+    
+            //Execute query
+            $stmt->execute();
+    
+            return $stmt;
+                }
+    
 
 
         //Create Quote
