@@ -19,7 +19,6 @@ if($num > 0){
 
     $category_arr = array();
 
-    $category_arr['data'] = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
@@ -31,9 +30,9 @@ if($num > 0){
                 'category' => $category
             );
 
-            //Push to "data"
+            //Push to array
 
-            array_push($category_arr['data'], $category_item);
+            array_push($category_arr, $category_item);
         
         
         //Convert to JSON & output
