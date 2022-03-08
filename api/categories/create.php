@@ -10,13 +10,15 @@ $data = json_decode(file_get_contents("php://input"));
 $category->category = $data->category;
 
 
+
+
 //Create Category
 
 if($category->create()){
 
     //Create array of new Category
     $category_arr = array(
-    'id'=> $category->lastInsertId(),
+    //'id'=> $category->id,
     'category' => $category->category
 );
 
