@@ -5,9 +5,7 @@
 $quote = new Quote($db);
 
 //Get ID
-$quote->id = isset($_GET['id']) ? $_GET['id'] : die(echo json_encode(
-    array('message' => 'No quotes found'))
-);
+$quote->id = isset($_GET['id']) ? $_GET['id'] : die();
        
 //Get Quote
 $quote->read_single();
