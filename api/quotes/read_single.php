@@ -5,7 +5,7 @@
 $quote = new Quote($db);
 
 //Get ID
-$quote->id = isset($_GET['id']) ? $_GET['id'] : die();
+$quote->id = isset($_GET['id']) ? $_GET['id'] : echo json_encode(array('message' => 'Missing Required Field'));
        
 //Get Quote
 $quote->read_single();
