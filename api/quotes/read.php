@@ -12,13 +12,14 @@ $result = $quote->read();
 
 $num = $result->rowCount();
 
-//Check if any quotes
+//Check if any authors
 if($num > 0){
 
     //Author array
 
     $quote_arr = array();
 
+    $quote_arr['data'] = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
@@ -33,9 +34,9 @@ if($num > 0){
 
             );
 
-            //Push to array 
+            //Push to "data"
 
-            array_push($quote_arr, $quote_item);
+            array_push($quote_arr['data'], $quote_item);
         
         
         //Convert to JSON & output
