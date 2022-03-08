@@ -96,7 +96,7 @@
           //Execute query
           if($stmt->execute()){
 
-            $id = stmt->lastInsertId();
+            $id = $stmt->lastInsertId();
               
             return true;
 
