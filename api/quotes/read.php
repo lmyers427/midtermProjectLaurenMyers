@@ -19,13 +19,7 @@ if($num > 0){
 
     $quote_arr = array();
 
-<<<<<<< HEAD
-    //Removed 'data'
-
-=======
->>>>>>> parent of 9f261c7 (Revert "Update quotes, categories, and authors read.php files")
-
-    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+   while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
         extract($row);
 
