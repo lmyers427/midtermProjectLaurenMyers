@@ -30,7 +30,7 @@ if($num > 0){
                 'category' => $category
             );
 
-            //Push to "data"
+            //Push to array
 
             array_push($category_arr, $category_item);
         

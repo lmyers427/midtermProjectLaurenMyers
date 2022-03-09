@@ -30,7 +30,7 @@ if($num > 0){
                 'author' => $author
             );
 
-            //Push to "data"
+            //Push to array
 
             array_push($author_arr, $author_item);  
         
