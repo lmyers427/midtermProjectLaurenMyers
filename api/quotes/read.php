@@ -27,8 +27,8 @@ if($num > 0){
 
                 'id' => $id,
                 'quote' => $quote,
-                'authorId' => $authorId,
-                'categoryId' => $categoryId
+                'authorName' => $authorName,
+                'categoryName' => $categoryName
 
             );
 
