@@ -26,7 +26,7 @@
         // Get Quotes
 
         public function read(){
-
+            try{
             //Create query
             $query = 'SELECT,
             a.name as authorsName, 
@@ -43,6 +43,11 @@
             categories c ON q.authorId = c.id
             ORDER BY
                 q.id';
+                
+            }
+            catch(Exception $e){
+                echo $e->getMessage();
+            }
 
         //Prepare Statement
 
