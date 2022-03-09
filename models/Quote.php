@@ -34,7 +34,7 @@
             q.id, 
             q.quote,
             q.authorId,
-            q.categoryIdc
+            q.categoryId
             FROM
             ' . $this->table . ' q
             INNER JOIN 
