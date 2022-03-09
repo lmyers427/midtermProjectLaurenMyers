@@ -8,6 +8,10 @@ $quote = new Quote($db);
 
 $result = $quote->read();
 
+ echo json_encode(
+        array('message' => 'we made it here')
+    );
+
 //Get row count
 
 $num = $result->rowCount();
