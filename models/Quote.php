@@ -26,7 +26,7 @@
         // Get Quotes
 
         public function read(){
-            try{
+            
             //Create query
 //             $query = 'SELECT,
 //             a.author as authorName, 
@@ -51,10 +51,6 @@
                 ORDER BY
                     q.id';
                 
-            }
-            catch(Exception $e){
-                echo $e->getMessage();
-            }
 
         //Prepare Statement
 
