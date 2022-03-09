@@ -29,7 +29,7 @@
             try{
             //Create query
             $query = 'SELECT,
-            a.name as authorsName, 
+            a.name as authorName, 
             c.name as categoryName,
             q.id, 
             q.quote,
@@ -38,9 +38,9 @@
             FROM
             ' . $this->table . ' q
             LEFT JOIN 
-            authors a ON q.categoryId = a.id
+            authors a ON q.authorId = a.id
             LEFT JOIN
-            categories c ON q.authorId = c.id
+            categories c ON q.categoryId = c.id
             ORDER BY
                 q.id';
                 
