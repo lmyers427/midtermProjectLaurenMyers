@@ -12,6 +12,8 @@
         public $quote;
         public $authorId;
         public $categoryId;
+        public $categoryName;
+        public $authorName;
 
 
         // Constructor with DB
@@ -26,13 +28,19 @@
         public function read(){
 
             //Create query
-            $query = 'SELECT 
+            $query = 'SELECT,
+            a.name as authorsName, 
+            c.name as categoryName,
             q.id, 
-            q.quote, 
-            q.authorId, 
-            q.categoryId 
+            q.quote,
+            q.authorId,
+            q.categoryIdc
             FROM
             ' . $this->table . ' q
+            INNER JOIN 
+            authors a ON q.categoryId = a.id
+            INNER JOIN
+            categories c ON q.authorId = c.id
             ORDER BY
                 q.id';
 
