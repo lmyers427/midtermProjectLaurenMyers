@@ -28,19 +28,28 @@
         public function read(){
             try{
             //Create query
-            $query = 'SELECT,
-            a.author as authorName, 
-            c.category as categoryName,
-            q.id, 
-            q.quote
-            FROM
-            ' . $this->table . ' q
-            INNER JOIN 
-            authors a ON q.authorId = a.id
-            INNER JOIN
-            categories c ON q.categoryId = c.id
-            ORDER BY
-                q.id';
+//             $query = 'SELECT,
+//             a.author as authorName, 
+//             c.category as categoryName,
+//             q.id, 
+//             q.quote
+//             FROM
+//             ' . $this->table . ' q
+//             INNER JOIN 
+//             authors a ON q.authorId = a.id
+//             INNER JOIN
+//             categories c ON q.categoryId = c.id
+//             ORDER BY
+//                 q.id';
+                
+                
+                $query = 'SELECT,
+                q.id,
+                q.quote
+                FROM
+                ' . $this->table . ' q
+                ORDER BY
+                    q.id';
                 
             }
             catch(Exception $e){
