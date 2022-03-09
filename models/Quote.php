@@ -99,11 +99,15 @@
             $stmt->execute();
 
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+            if($row){
             //Set properties
             $this->quote = $row['quote'];
             $this->authorName = $row['authorName'];
             $this->categoryName= $row['categoryName'];
+            }
+            else{
+                return false;
+            }
 
         }
 
@@ -263,7 +267,7 @@
 
           }
 
-          //Print error if something is not right
+          //Print error 
           printf("Error: %s.\n", $stmt->error);
 
           return false;

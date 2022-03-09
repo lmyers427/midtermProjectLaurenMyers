@@ -8,7 +8,10 @@ $quote = new Quote($db);
 $quote->id = isset($_GET['id']) ? $_GET['id'] : die();
        
 //Get Quote
-$quote->read_single();
+if($quote->read_single() == false){
+
+
+
 
 //Create array
 $quote_arr = array(
@@ -20,3 +23,10 @@ $quote_arr = array(
 
 //Make JSON
 print_r(json_encode($quote_arr));
+}
+else{
+
+    echo json_encode(
+        array('message' => 'ID does not exist found')
+    );
+}
