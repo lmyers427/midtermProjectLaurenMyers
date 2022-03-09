@@ -19,7 +19,6 @@ if($num > 0){
 
     $author_arr = array();
 
-   
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
 

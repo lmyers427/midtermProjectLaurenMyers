@@ -5,9 +5,9 @@
 $quote = new Quote($db);
 
 //Get categoryID & authorId
-$quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
+$quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die("CategoryId not entered");
 
-$quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die();
+$quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die("AuthorId not entered");
 
 
 //read query

@@ -2,14 +2,18 @@
 
 class Database{
     //Db Params
+    
     private $host = 'tvcpw8tpu4jvgnnq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
     private $db_name = 'stl0wfgdrd8zcznq';
     private $username = 'uqnxczhpexp14jsl';
-   private $password = null;
+    private $password = null;
     private $conn;
+      
+
+    
 
 
-    //DB Connet 
+    //DB Connect 
 
     public function connect(){
         $this->conn = null;
