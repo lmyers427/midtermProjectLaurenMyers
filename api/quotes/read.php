@@ -26,9 +26,9 @@ if($num > 0){
             $quote_item = array(
 
                 'id' => $id,
-                'quote' => $quote
-                //'authorName' => $authorName,
-               // 'categoryName' => $categoryName
+                'quote' => $quote,
+                'authorName' => $authorName,
+                'categoryName' => $categoryName
 
             );
 

@@ -25,8 +25,6 @@ if($num > 0){
 
     $quote_arr = array();
 
-    $quote_arr['data'] = array();
-
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
         extract($row);
@@ -35,14 +33,14 @@ if($num > 0){
 
                 'id' => $id,
                 'quote' => $quote,
-                'authorId' => $authorId,
-                'categoryId' => $categoryId
+                'authorName' => $authorName,
+                'categoryName' => $categoryName
 
             );
 
             //Push to "data"
 
-            array_push($quote_arr['data'], $quote_item);
+            array_push($quote_arr, $quote_item);
         
         
         //Convert to JSON & output
@@ -59,7 +57,7 @@ if($num > 0){
     //No quotes
 
     echo json_encode(
-        array('message' => 'No quotes found')
+        array('message' => 'No quotes found with that CategoryId and AuthorId')
     );
 
 }

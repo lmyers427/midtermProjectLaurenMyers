@@ -28,28 +28,27 @@
         public function read(){
             
             //Create query
-//             $query = 'SELECT,
-//             a.author as authorName, 
-//             c.category as categoryName,
-//             q.id, 
-//             q.quote
-//             FROM
-//             ' . $this->table . ' q
-//             INNER JOIN 
-//             authors a ON q.authorId = a.id
-//             INNER JOIN
-//             categories c ON q.categoryId = c.id
-//             ORDER BY
-//                 q.id';
+            try{
+            $query = 'SELECT
+            a.author as authorName, 
+            c.category as categoryName,
+            q.id, 
+            q.quote
+            FROM
+            ' . $this->table . ' q
+            INNER JOIN 
+            authors a ON q.authorId = a.id
+            INNER JOIN
+            categories c ON q.categoryId = c.id
+            ORDER BY
+                q.id';
+            }
+            catch(Exception $e){
+
+                echo $e->getMessage("Something went wrong");
+            }
                 
-                
-                $query = 'SELECT,
-                q.id,
-                q.quote
-                FROM
-                ' . $this->table . ' q
-                ORDER BY
-                    q.id';
+               
                 
 
         //Prepare Statement
@@ -67,19 +66,27 @@
         //Read a single quote
         public function read_single(){
 
-            
+            try{
             //Create query
             $query = 'SELECT 
             q.id, 
             q.quote, 
-            q.authorId, 
-            q.categoryId 
+            a.author as authorName,
+            c.category as categoryName
             FROM
             ' . $this->table . ' q
+            INNER JOIN 
+            authors a ON q.authorId = a.id
+            INNER JOIN
+            categories c ON q.categoryId = c.id
             WHERE
                 q.id = ?
             LIMIT 0,1';
+             }
+             catch(Exception $e){
 
+             echo $e->getMessage("Something went wrong");
+              }    
 
 
             //Prepare statement
@@ -95,25 +102,34 @@
 
             //Set properties
             $this->quote = $row['quote'];
-            $this->authorId = $row['authorId'];
-            $this->categoryId = $row['categoryId'];
+            $this->authorName = $row['authorName'];
+            $this->categoryName= $row['categoryName'];
 
         }
 
         //Read all quotes associated with specific authorId
 
         public function read_authorId(){
-
+            try{
             //Create query
             $query = 'SELECT 
             q.id, 
             q.quote, 
-            q.authorId, 
-            q.categoryId 
+            a.author as authorName,
+            c.category as categoryName
             FROM
             ' . $this->table . ' q
+             INNER JOIN 
+             authors a ON q.authorId = a.id
+             INNER JOIN
+             categories c ON q.categoryId = c.id
             WHERE
                q.authorId = ?';
+            }
+            catch(Exception $e){
+
+            echo $e->getMessage("Something went wrong");
+             } 
 
         //Prepare Statement
 
@@ -133,16 +149,26 @@
 
             public function read_categoryId(){
 
-                //Create query
-                $query = 'SELECT 
-                q.id, 
-                q.quote, 
-                q.authorId, 
-                q.categoryId 
-                FROM
-                ' . $this->table . ' q
-                WHERE
-                   q.categoryId = ?';
+                try{
+                    //Create query
+                    $query = 'SELECT 
+                    q.id, 
+                    q.quote, 
+                    a.author as authorName,
+                    c.category as categoryName
+                    FROM
+                    ' . $this->table . ' q
+                     INNER JOIN 
+                     authors a ON q.authorId = a.id
+                     INNER JOIN
+                     categories c ON q.categoryId = c.id
+                    WHERE
+                       q.categoryId = ?';
+                    }
+                    catch(Exception $e){
+        
+                    echo $e->getMessage("Something went wrong");
+                     } 
     
             //Prepare Statement
     
@@ -162,16 +188,28 @@
     
       public function read_both(){
 
-                //Create query
-                $query = 'SELECT 
-                q.id, 
-                q.quote, 
-                q.authorId, 
-                q.categoryId 
-                FROM
-                ' . $this->table . ' q
-                WHERE
-                   q.authorId = ? AND q.categoryId = ?';
+        try{
+            //Create query
+            $query = 'SELECT 
+            q.id, 
+            q.quote, 
+            a.author as authorName,
+            c.category as categoryName
+            FROM
+            ' . $this->table . ' q
+             INNER JOIN 
+             authors a ON q.authorId = a.id
+             INNER JOIN
+             categories c ON q.categoryId = c.id
+             WHERE
+             q.authorId = ? AND q.categoryId = ?';
+            }
+            catch(Exception $e){
+
+            echo $e->getMessage("Something went wrong with the query");
+             } 
+
+            
     
             //Prepare Statement
     

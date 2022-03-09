@@ -14,8 +14,8 @@ $quote->read_single();
 $quote_arr = array(
     'id'=> $quote->id,
     'quote' => $quote->quote,
-    'authorId' => $quote->authorId,
-    'categoryId' => $quote->categoryId
+    'authorName' => $quote->authorName,
+    'categoryName' => $quote->categoryName
 );
 
 //Make JSON
