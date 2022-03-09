@@ -37,9 +37,9 @@
             q.categoryId
             FROM
             ' . $this->table . ' q
-            INNER JOIN 
+            LEFT JOIN 
             authors a ON q.categoryId = a.id
-            INNER JOIN
+            LEFT JOIN
             categories c ON q.authorId = c.id
             ORDER BY
                 q.id';
