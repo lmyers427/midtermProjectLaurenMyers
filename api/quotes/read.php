@@ -8,10 +8,6 @@ $quote = new Quote($db);
 
 $result = $quote->read();
 
- echo json_encode(
-        array('message' => 'we made it here')
-    );
-
 //Get row count
 
 $num = $result->rowCount();
@@ -30,9 +26,9 @@ if($num > 0){
             $quote_item = array(
 
                 'id' => $id,
-                'quote' => $quote,
-                'authorName' => $authorName,
-                'categoryName' => $categoryName
+                'quote' => $quote
+                //'authorName' => $authorName,
+               // 'categoryName' => $categoryName
 
             );
 
