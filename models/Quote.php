@@ -29,8 +29,8 @@
             try{
             //Create query
             $query = 'SELECT,
-            a.name as authorName, 
-            c.name as categoryName,
+            a.author as authorName, 
+            c.category as categoryName,
             q.id, 
             q.quote,
             q.authorId,
