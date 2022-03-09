@@ -35,9 +35,9 @@
             q.quote
             FROM
             ' . $this->table . ' q
-            LEFT JOIN 
+            INNER JOIN 
             authors a ON q.authorId = a.id
-            LEFT JOIN
+            INNER JOIN
             categories c ON q.categoryId = c.id
             ORDER BY
                 q.id';
