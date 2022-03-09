@@ -32,9 +32,7 @@
             a.author as authorName, 
             c.category as categoryName,
             q.id, 
-            q.quote,
-            q.authorId,
-            q.categoryId
+            q.quote
             FROM
             ' . $this->table . ' q
             LEFT JOIN 
