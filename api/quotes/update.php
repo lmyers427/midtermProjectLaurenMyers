@@ -8,26 +8,31 @@ $quote = new Quote($db);
 $data = json_decode(file_get_contents("php://input"));
 
 //Set ID to update
-$quote->id = $data->id;
+$quote->id = isset($data->id) ? $data->id : die("Quote ID not entered");
 
-$quote->quote = $data->quote;
+$quote->quote = isset($data->quote) ? $data->quote : die("Quote not entered");
 
-$quote->categoryId = $data->categoryId; 
+$quote->categoryId = isset($data->categoryId) ? $data->categoryId : die("CategoryId not entered");
 
-$quote->authorId = $data->authorId;
+$quote->authorId = isset($data->authorId) ? $data->authorId : die("AuthorId not entered");
 
 //Update Quote
 
 if($quote->update()){
 
-    echo json_encode(
-        array('message' => 'Quote Updated')
+    $quoteUpdated_arr = array(
+        'id' => $quote->id,
+        'quote' => $quote->quote,
+        'categoryId' => $quote->categoryId,
+        'authorId' => $quote->authorId
     );
+    
+    print_r(json_encode($quoteUpdated_arr));
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Quote Not Updated')
+        array('message' => 'Error Occured Quote Not Updated')
     );
 }

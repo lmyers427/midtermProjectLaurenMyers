@@ -5,7 +5,7 @@
 $quote = new Quote($db);
 
 //Get categoryID
-$quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die();
+$quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Category Parameter');
 
 //read query
 
