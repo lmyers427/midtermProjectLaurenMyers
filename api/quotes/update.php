@@ -1,13 +1,11 @@
 <?php
 
-//Instantiate new Author
-$quote = new Quote($db);
 
 //Get raw posted data
 
 $data = json_decode(file_get_contents("php://input"));
 
-//Set ID to update
+//Set parameters to update
 $quote->id = isset($data->id) ? $data->id : die("Quote ID not entered");
 
 $quote->quote = isset($data->quote) ? $data->quote : die("Quote not entered");

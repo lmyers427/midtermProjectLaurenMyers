@@ -1,11 +1,11 @@
 <?php
 
-//Instantiate quote object
+// //Instantiate quote object
 
-$quote = new Quote($db);
+// $quote = new Quote($db);
 
-//Get AuthorID
-$quote->id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
+// //Get AuthorID
+// $quote->id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
 
 //read query
 
@@ -30,8 +30,8 @@ if($num > 0){
 
                 'id' => $id,
                 'quote' => $quote,
-                'authorName' => $authorName,
-                'categoryName' => $categoryName
+                'author' => $authorName,
+                'category' => $categoryName
 
             );
 

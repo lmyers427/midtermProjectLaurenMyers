@@ -30,8 +30,8 @@ if($num > 0){
 
                 'id' => $id,
                 'quote' => $quote,
-                'authorName' => $authorName,
-                'categoryName' => $categoryName
+                'author' => $authorName,
+                'category' => $categoryName
 
             );
 

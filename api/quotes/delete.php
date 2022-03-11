@@ -8,20 +8,25 @@ $quote = new Quote($db);
 $data = json_decode(file_get_contents("php://input"));
 
 //Set ID to update
-$quote->id = $data->id;
+$quote->id = isset($data->id) ? $data->id : die("Quote not entered");
+
 
 //Delete Quote
 
 if($quote->delete()){
 
-    echo json_encode(
-        array('message' => 'Quote Deleted')
+    $quoteDeleted_arr = array(
+        'id' => $quote->id,
     );
+    
+    print_r(json_encode($quoteDeleted_arr));
+
+   
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Quote Not Deleted')
+        array('message' => 'Error Occured: Quote Not Created')
     );
 }

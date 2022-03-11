@@ -270,7 +270,6 @@
         }
         //Update Quote
         public function update(){
-            try{
             
             //Create query
 
@@ -285,11 +284,7 @@
                     id = :id';
 
 
-            }catch(Exception $e){
 
-                echo $e->getMessage("Something went wrong with the query");
-         } 
-            
 
         //Prepare statement 
 
@@ -303,8 +298,8 @@
         $this->authorId = htmlspecialchars(strip_tags($this->authorId));
 
         //Bind data
-        $stmt->bindParam(':quote', $this->quote);
         $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':quote', $this->quote);
         $stmt->bindParam(':categoryId', $this->categoryId);
         $stmt->bindParam(':authorId', $this->authorId);
         

@@ -2,7 +2,7 @@
 
 //Instantiate quote object
 
-$quote = new Quote($db);
+//$quote = new Quote($db);
 
 //Get categoryID & authorId
 $quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die("CategoryId not entered");
@@ -33,8 +33,8 @@ if($num > 0){
 
                 'id' => $id,
                 'quote' => $quote,
-                'authorName' => $authorName,
-                'categoryName' => $categoryName
+                'author' => $authorName,
+                'category' => $categoryName
 
             );
 

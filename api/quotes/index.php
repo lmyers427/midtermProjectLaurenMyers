@@ -11,6 +11,8 @@ if ($method === 'OPTIONS') {
 include_once '../../config/Database.php';
 include_once '../../models/Quote.php';
 
+include_once '../../function/isValid.php';
+
 //Instantiate DB & connect
 
 $database = new Database();
@@ -18,23 +20,70 @@ $database = new Database();
 $db = $database->connect();
 
 
+//Instantiate quote object
+
+$quote = new Quote($db);
+
+//Test method by Case Statement
+
+
 switch ($method) {
 
     case 'GET' && isset($_GET['id']):
 
+        $quoteIdExists = isValid('id', $quote);
+
+
+        if($quoteIdExists){
+
          include_once 'read_single.php';
+
+        }
+        else{
+
+            echo json_encode(
+                array('message' => 'Quote ID does not Exist')
+            );
+        }
         
         break;
 
     case 'GET' && isset($_GET['authorId']) && isset($_GET['categoryId']):
 
+        $authorExists = isValid('authorId', $quote);
+        $categoryExists = isValid('categoryId', $quote);
+
+        if(!$authorExists || !$categoryExists){
+
+            echo json_encode(
+                array('message' => 'Author and/or Category does not Exist')
+            );
+        }
+        else{
+
         include_once 'read_both.php';
+
+        }
 
         break;
 
     case 'GET' && isset($_GET['authorId']):
 
-        include_once 'read_authorId.php';
+        $authorExists = isValid('authorId', $quote);
+
+        if(!$authorExists){
+
+            echo json_encode(
+                array('message' => 'Author does not Exist')
+            );
+
+     
+
+        }
+        else{
+
+            include_once 'read_authorId.php';
+        }
            
         break;
 

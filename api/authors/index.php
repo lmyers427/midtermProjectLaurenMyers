@@ -17,10 +17,17 @@ $database = new Database();
 
 $db = $database->connect();
 
+//Instantiate author object
+
+$author = new Author($db);
+
+
 
 switch ($method) {
 
     case 'GET' && isset($_GET['id']):
+
+
 
          include_once 'read_single.php';
         

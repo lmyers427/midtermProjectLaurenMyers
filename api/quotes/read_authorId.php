@@ -2,10 +2,10 @@
 
 //Instantiate quote object
 
-$quote = new Quote($db);
+//$quote = new Quote($db);
 
 //Get AuthorID
-$quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die();
+$quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing AuthorId');
 
 //read query
 
@@ -30,8 +30,8 @@ if($num > 0){
 
                 'id' => $id,
                 'quote' => $quote,
-                'authorName' => $authorName,
-                'categoryName' => $categoryName
+                'author' => $authorName,
+                'category' => $categoryName
 
             );
 

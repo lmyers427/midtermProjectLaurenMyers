@@ -14,16 +14,22 @@ $author->author = $data->author;
 
 //Update Author
 
+//Update Quote
+
 if($author->update()){
 
-    echo json_encode(
-        array('message' => 'Author Updated')
+    $authorUpdated_arr = array(
+        'id' => $author->id,
+        'author' => $author->author,
+        
     );
+    
+    print_r(json_encode($authorUpdated_arr));
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Author Not Updated')
+        array('message' => 'Error Occured Author Not Updated')
     );
 }

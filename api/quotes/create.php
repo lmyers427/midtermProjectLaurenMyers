@@ -1,7 +1,7 @@
 <?php
 
 //Instantiate new Quote
-$quote = new Quote($db);
+//$quote = new Quote($db);
 
 //Get raw data
 
@@ -19,8 +19,8 @@ if($quote->create()){
     $quoteCreated_arr = array(
         'id' => $quote->id,
         'quote' => $quote->quote,
-        'categoryId' => $quote->categoryId,
-        'authorId' => $quote->authorId
+        'category' => $quote->categoryId,
+        'author' => $quote->authorId
     );
     
     print_r(json_encode($quoteCreated_arr));
