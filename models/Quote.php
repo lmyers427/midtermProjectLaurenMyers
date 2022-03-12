@@ -126,17 +126,25 @@
             echo $e->getMessage("Something went wrong");
              } 
 
-        //Prepare Statement
+        
+                //Prepare Statement
+                    
+                $stmt = $this->conn->prepare($query);
+                    
+                //Bind Quote ID
+                $stmt->bindParam(1, $this->id);
 
-        $stmt = $this->conn->prepare($query);
+                //Execute query
+                $stmt->execute();
 
-        //Bind Author ID
-        $stmt->bindParam(1, $this->authorId);
+                $num = $stmt->RowCount();
 
-        //Execute query
-        $stmt->execute();
-
-        return $stmt;
+                if($num > 0){
+                return $stmt;
+                }
+                else{
+                return false;
+                }
             }
 
             //Read all quotes associated with specific categoryId

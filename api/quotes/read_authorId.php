@@ -20,9 +20,8 @@ if($num > 0){
 
     //Author array
 
-    $quote_arr = array();
 
-    while($row = $result->fetch(PDO::FETCH_ASSOC)){
+    $row = $result->fetch(PDO::FETCH_ASSOC);
 
         extract($row);
 
@@ -37,16 +36,16 @@ if($num > 0){
 
             //Push to author
 
-            array_push($quote_arr, $quote_item);
+           
         
         
         //Convert to JSON & output
 
        
 
-    }
+    
+        echo json_encode($quote_item);
 
-    echo json_encode($quote_arr);
 
 
 }else{

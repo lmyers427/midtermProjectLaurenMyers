@@ -72,12 +72,16 @@ switch ($method) {
 
     case 'GET' && isset($_GET['authorId']):
 
-        $authorExists = isValid('authorId', $quote);
+        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Id Parameter');
+
+
+
+        $authorExists = isValid($authorId, $quote);
 
         if(!$authorExists){
 
             echo json_encode(
-                array('message' => 'Author does not Exist')
+                array('message' => 'authorId Not Found')
             );
 
      
