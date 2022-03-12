@@ -2,7 +2,7 @@
 
 //Instantiate author object
 
-$author = new Author($db);
+//$author = new Author($db);
 
 //read query
 

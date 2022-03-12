@@ -3,7 +3,7 @@
  function isValid($id, $model){
 
    //Set the id of the $model
-     $model->$id = $_GET[$id];
+     $model->id = $id;
 
     // Get the result of $model read_single method
 

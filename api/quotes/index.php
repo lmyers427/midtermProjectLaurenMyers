@@ -31,19 +31,22 @@ switch ($method) {
 
     case 'GET' && isset($_GET['id']):
 
-        $quoteIdExists = isValid('id', $quote);
+       $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
 
 
-        if($quoteIdExists){
+        $quoteIdExists = isValid($id, $quote);
+        
 
-         include_once 'read_single.php';
+       if(!$quoteIdExists){
+
+        echo json_encode(
+            array('message' => 'No Quotes Found')
+        );
 
         }
         else{
 
-            echo json_encode(
-                array('message' => 'Quote ID does not Exist')
-            );
+            include_once 'read_single.php';
         }
         
         break;

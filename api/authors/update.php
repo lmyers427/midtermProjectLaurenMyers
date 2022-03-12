@@ -1,7 +1,7 @@
 <?php
 
 //Instantiate new Author
-$author = new Author($db);
+//$author = new Author($db);
 
 //Get raw posted data
 

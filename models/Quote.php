@@ -66,7 +66,7 @@
         //Read a single quote
         public function read_single(){
 
-            try{
+                
                 //Create query
                 $query = 'SELECT 
                 q.id, 
@@ -81,23 +81,25 @@
                  categories c ON q.categoryId = c.id
                 WHERE
                    q.id = ?';
-                }
-                catch(Exception $e){
-    
-                echo $e->getMessage("Something went wrong");
-                 } 
-    
+
             //Prepare Statement
     
             $stmt = $this->conn->prepare($query);
     
-            //Bind Author ID
+            //Bind Quote ID
             $stmt->bindParam(1, $this->id);
     
             //Execute query
-            $stmt->execute();
-    
+           $stmt->execute();
+
+           $num = $stmt->RowCount();
+        
+           if($num > 0){
             return $stmt;
+           }
+           else{
+            return false;
+           }
         }
 
         //Read all quotes associated with specific authorId

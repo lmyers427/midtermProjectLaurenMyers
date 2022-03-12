@@ -1,11 +1,11 @@
 <?php
 
-//Instantiate author object
+ //Instantiate author object
 
-$author = new Author($db);
+ $author = new Author($db);
 
-//Get ID
-$author->id = isset($_GET['id']) ? $_GET['id'] : die();
+ //Get ID
+  $author->id = isset($_GET['id']) ? $_GET['id'] : die();
        
 //Get author
 $author->read_single();
