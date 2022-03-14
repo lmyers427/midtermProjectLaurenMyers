@@ -4,8 +4,8 @@
 
 //$quote = new Quote($db);
 
-//Get AuthorID
-$quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing AuthorId');
+//Get categoryID
+$quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameter');
 
 //read query
 
@@ -20,8 +20,9 @@ if($num > 0){
 
     //Author array
 
+    $quote_arr = array();
 
-    $row = $result->fetch(PDO::FETCH_ASSOC);
+    while($row = $result->fetch(PDO::FETCH_ASSOC)){
 
         extract($row);
 
@@ -34,18 +35,18 @@ if($num > 0){
 
             );
 
-            //Push to author
+            //Push to "data"
 
-           
+            array_push($quote_arr, $quote_item);
         
         
         //Convert to JSON & output
 
        
 
-    
-        echo json_encode($quote_item);
+    }
 
+    echo json_encode($quote_arr);
 
 
 }else{
@@ -53,7 +54,7 @@ if($num > 0){
     //No quotes
 
     echo json_encode(
-        array('message' => 'No quotes for that author ID found')
+        array('message' => 'No quotes with that Author ID found')
     );
 
 }

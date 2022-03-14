@@ -24,6 +24,7 @@ $db = $database->connect();
 
 $quote = new Quote($db);
 
+
 //Test method by Case Statement
 
 
@@ -53,8 +54,12 @@ switch ($method) {
 
     case 'GET' && isset($_GET['authorId']) && isset($_GET['categoryId']):
 
-        $authorExists = isValid('authorId', $quote);
-        $categoryExists = isValid('categoryId', $quote);
+        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Id Parameter');
+
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Id Parameter');
+
+        $authorExists = isValid($authorId, $quote);
+        $categoryExists = isValid($categoryId, $quote);
 
         if(!$authorExists || !$categoryExists){
 
@@ -72,6 +77,7 @@ switch ($method) {
 
     case 'GET' && isset($_GET['authorId']):
 
+        
         $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Id Parameter');
 
 
@@ -96,7 +102,26 @@ switch ($method) {
 
     case 'GET' && isset($_GET['categoryId']):
 
-        include_once 'read_categoryId.php';
+        
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Id Parameter');
+
+
+
+        $categoryExists = isValid($categoryId, $quote);
+
+        if(!$categoryExists){
+
+            echo json_encode(
+                array('message' => 'categoryId Not Found')
+            );
+
+     
+
+        }
+        else{
+
+            include_once 'read_categoryId.php';
+        }
             
         break;
 
@@ -107,8 +132,39 @@ switch ($method) {
         break;
 
     case 'POST':
-        
+
+        $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Parameters');
+
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameters');
+
+        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameters');
+
+        $authorExists = isValid($authorId, $quote);
+
+        $categoryExists = isValid($categoryId, $quote);
+
+        $idExists = isValid($id, $quote);
+
+        if(!$authorExists){
+           
+            echo json_encode(
+                array('message' => 'authorId Not Found')
+            );
+
+        }
+        else if(!$categoryExists){
+
+            echo json_encode(
+                array('message' => 'categoryId Not Found')
+            );
+
+        }
+       else{
+
+       
         include_once 'create.php';
+
+       }
         break;
 
     case 'PUT':
