@@ -11,6 +11,8 @@ if ($method === 'OPTIONS') {
 include_once '../../config/Database.php';
 include_once '../../models/Author.php';
 
+include_once '../../function/isValid.php';
+
 //Instantiate DB & connect
 
 $database = new Database();
@@ -28,9 +30,24 @@ switch ($method) {
     case 'GET' && isset($_GET['id']):
 
 
+        $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
 
-         include_once 'read_single.php';
+
+        $authorExists = isValid($id, $author);
         
+
+       if(!$authorExists){
+
+        echo json_encode(
+            array('message' => 'authorId Not Found')
+        );
+
+        }
+        else{
+
+            include_once 'read_single.php';
+        }
+
         break;
     
     case 'GET':

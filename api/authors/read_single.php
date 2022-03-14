@@ -1,20 +1,33 @@
 <?php
-
- //Instantiate author object
-
- $author = new Author($db);
-
- //Get ID
-  $author->id = isset($_GET['id']) ? $_GET['id'] : die();
-       
+   
 //Get author
-$author->read_single();
+$result = $author->read_single();
 
-//Create array
-$author_arr = array(
-    'id'=> $author->id,
-    'author' => $author->author
-);
+//Get row count
+$num = $result->rowCount();
 
-//Make JSON
-print_r(json_encode($author_arr));
+//Check if authors
+if($num > 0){
+
+  $row = $result->fetch(PDO::FETCH_ASSOC);
+   extract($row);
+
+          $author_item = array(
+
+              'id' => $id,
+              'author' => $author,
+          );
+
+
+  echo json_encode($author_item);
+
+}
+else{
+
+  //No quotes
+
+  echo json_encode(
+      array('message' => 'No Author found')
+  );
+
+}

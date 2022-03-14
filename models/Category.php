@@ -65,10 +65,17 @@
             //Execute query
             $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $num = $stmt->RowCount();
 
-            //Set properties
-            $this->category =$row['category'];
+            if($num > 0){
+
+              return $stmt;
+            }
+            else{
+              return false;
+            }
+
+            
 
         }
 

@@ -46,7 +46,8 @@
 
             
             //Create query
-            $query = 'SELECT a.id, 
+            $query = 'SELECT 
+                 a.id, 
                  a.author
             FROM
             ' . $this->table . ' a
@@ -65,10 +66,15 @@
             //Execute query
             $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $num = $stmt->RowCount();
 
-            //Set properties
-            $this->author =$row['author'];
+            if($num > 0){
+
+              return $stmt;
+            }
+            else{
+              return false;
+            }
 
         }
 

@@ -1,9 +1,6 @@
 <?php
 
 
- //Get Quote Id
-// $quote->id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
-
 //read query
 
 $result = $quote->read_single();

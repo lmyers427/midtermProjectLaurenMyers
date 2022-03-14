@@ -236,9 +236,7 @@
         public function create(){
             //Create query
 
-            
-
-
+        
             $query = 'INSERT INTO ' . 
                     $this->table . '
                 SET
@@ -278,7 +276,11 @@
 
           return false;
         }
+      
+      
         //Update Quote
+
+
         public function update(){
             
             //Create query
@@ -292,8 +294,6 @@
 
                 WHERE
                     id = :id';
-
-
 
 
         //Prepare statement 

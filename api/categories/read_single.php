@@ -1,21 +1,33 @@
 <?php
+      
+//Get author
+$result = $category->read_single();
 
-//Instantiate category object
+//Get row count
+$num = $result->rowCount();
 
-$category = new Category($db);
+//Check if authors
+if($num > 0){
 
-//Get ID
-$category->id = isset($_GET['id']) ? $_GET['id'] : die();
-       
-//Get category
-$category->read_single();
+  $row = $result->fetch(PDO::FETCH_ASSOC);
+   extract($row);
+
+          $category_item = array(
+
+              'id' => $id,
+              'category' => $category,
+          );
 
 
-//Create array
-$category_arr = array(
-    'id'=> $category->id,
-    'category' => $category->category
-);
+  echo json_encode($category_item);
 
-//Make JSON
-print_r(json_encode($category_arr));
+}
+else{
+
+  //No quotes
+
+  echo json_encode(
+      array('message' => 'No Category found')
+  );
+
+}

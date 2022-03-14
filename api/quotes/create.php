@@ -7,9 +7,9 @@
 
  $data = json_decode(file_get_contents("php://input"));
 
- $quote->quote = isset($data->quote) ? $data->quote : die("Quote not entered");
- $quote->categoryId = isset($data->categoryId) ? $data->categoryId : die("CategoryId not entered");
- $quote->authorId = isset($data->authorId) ? $data->authorId : die("AuthorId not entered");
+ $quote->quote = isset($data->quote) ? $data->quote : die("Missing Required Parameters");
+ $quote->categoryId = isset($data->categoryId) ? $data->categoryId : die("Missing Required Parameter");
+ $quote->authorId = isset($data->authorId) ? $data->authorId : die("Missing Required Parameter");
  
 
 //Create Quote

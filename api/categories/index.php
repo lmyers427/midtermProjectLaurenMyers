@@ -11,20 +11,41 @@ if ($method === 'OPTIONS') {
 include_once '../../config/Database.php';
 include_once '../../models/Category.php';
 
+include_once '../../function/isValid.php';
+
 //Instantiate DB & connect
 
 $database = new Database();
 
 $db = $database->connect();
 
+//Instantiate category object
+
+$category = new Category($db);
+
 
 switch ($method) {
 
     case 'GET' && isset($_GET['id']):
 
-         include_once 'read_single.php';
+        $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Parameter');
+
+        $categoryExists = isValid($id, $category);
         
-        break;
+
+        if(!$categoryExists){
+ 
+         echo json_encode(
+             array('message' => 'categoryId Not Found')
+         );
+ 
+         }
+         else{
+ 
+             include_once 'read_single.php';
+         }
+ 
+         break;
     
     case 'GET':
 
