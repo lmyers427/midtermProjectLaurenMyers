@@ -27,6 +27,6 @@ if($quote->create()){
 } else {
 
     echo json_encode(
-        array('message' => 'Error Occured: Quote Not Created')
+        array('message' => 'Missing Required Parameters')
     );
 }

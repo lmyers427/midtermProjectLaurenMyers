@@ -32,7 +32,7 @@ switch ($method) {
 
     case 'GET' && isset($_GET['id']):
 
-       $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Parameters');
+       $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Parameter');
 
 
         $quoteIdExists = isValid($id, $quote);
@@ -54,9 +54,9 @@ switch ($method) {
 
     case 'GET' && isset($_GET['authorId']) && isset($_GET['categoryId']):
 
-        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameters');
+        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameter');
 
-        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameters');
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameter');
 
         $authorExists = isValid($authorId, $quote);
         $categoryExists = isValid($categoryId, $quote);
@@ -103,7 +103,7 @@ switch ($method) {
     case 'GET' && isset($_GET['categoryId']):
 
         
-        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameters');
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameter');
 
 
 
@@ -137,10 +137,13 @@ switch ($method) {
 
          $data = json_decode(file_get_contents("php://input"));
 
-         $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameters');
+         $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameter');
        
-         $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameters');
-       
+         $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
+    
+         $quote = isset($data->quote) ? $data->quote : die('Missing Required Parameter');
+
+
          $authorExists = isValid($authorId, $quote);
          $categoryExists = isValid($categoryId, $quote);
 
@@ -165,7 +168,6 @@ switch ($method) {
         }
 
         break;
-       
 
     case 'PUT':
 
@@ -173,11 +175,11 @@ switch ($method) {
 
         $data = json_decode(file_get_contents("php://input"));
 
-        $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameters');
+        $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameter');
 
-        $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameters');
+        $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
 
-        $id = isset($data->id) ? $data->id : die('Missing Required Parameters');
+        $id = isset($data->id) ? $data->id : die('Missing Required Parameter');
 
 
         $authorExists = isValid($authorId, $quote);
