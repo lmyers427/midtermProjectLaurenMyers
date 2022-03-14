@@ -59,6 +59,7 @@ switch ($method) {
     case 'POST':
         
         include_once 'create.php';
+
         break;
 
     case 'PUT':
@@ -86,7 +87,25 @@ switch ($method) {
 
     case 'DELETE':
 
+        $data = json_decode(file_get_contents("php://input"));
+
+        $id = isset($data->id) ? $data->id : die('Missing Required Parameter');
+
+        $authorExists = isValid($id, $author);
+
+        if(!$authorExists){
+            
+            echo json_encode(
+                array('message' => 'authorId Not Found')
+            );
+
+
+        }
+        else{
+       
         include_once 'delete.php';
+
+        }
 
         break;
 

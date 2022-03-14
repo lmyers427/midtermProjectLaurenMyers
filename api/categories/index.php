@@ -84,7 +84,25 @@ switch ($method) {
 
     case 'DELETE':
 
+        $data = json_decode(file_get_contents("php://input"));
+
+        $id = isset($data->id) ? $data->id : die('Missing Required Parameter');
+
+        $categoryExists = isValid($id, $category);
+
+        if(!$categoryExists){
+            
+            echo json_encode(
+                array('message' => 'categoryId Not Found')
+            );
+
+
+        }
+        else{
+       
         include_once 'delete.php';
+
+        }
 
         break;
 

@@ -1,8 +1,5 @@
 <?php
 
-//Instantiate new Quote object
-$quote = new Quote($db);
-
 //Get raw posted data
 
 $data = json_decode(file_get_contents("php://input"));
@@ -27,6 +24,6 @@ if($quote->delete()){
 } else {
 
     echo json_encode(
-        array('message' => 'Error Occured: Quote Not Created')
+        array('message' => 'Error Occured: Quote Not Deleted')
     );
 }

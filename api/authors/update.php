@@ -1,26 +1,23 @@
 <?php
 
-//Instantiate new Author
-//$author = new Author($db);
 
 //Get raw posted data
 
 $data = json_decode(file_get_contents("php://input"));
 
 //Set ID to update
-$author->id = $data->id;
+$author->id = isset($data->id) ? $data->id : die("Missing Required Parameters");
 
-$author->author = $data->author;
+$author->author = isset($data->author) ? $data->author : die("Missing Required Parameters");
+
 
 //Update Author
-
-//Update Quote
 
 if($author->update()){
 
     $authorUpdated_arr = array(
         'id' => $author->id,
-        'author' => $author->author,
+        'author' => $author->author
         
     );
     

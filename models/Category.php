@@ -144,11 +144,12 @@
             return true;
 
         }
-
-        //Print error if something is not right
-        printf("Error: %s.\n", $stmt->error);
+        else{
 
         return false;
+
+        }
+
         }
 
 

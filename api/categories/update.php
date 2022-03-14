@@ -5,9 +5,9 @@
 $data = json_decode(file_get_contents("php://input"));
 
 //Set ID to update
-$category->id = $data->id;
+$category->id = isset($data->id) ? $data->id : die("Missing Required Parameters");
 
-$category->category = $data->category;
+$category->category = isset($data->category) ? $data->category : die("Missing Required Parameters");
 
 //Update Category
 
@@ -25,6 +25,6 @@ if($category->update()){
 } else {
 
     echo json_encode(
-        array('message' => 'Error Occured Author Not Updated')
+        array('message' => 'Error Occured Category Not Updated')
     );
 }

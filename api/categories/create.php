@@ -1,7 +1,5 @@
 <?php
 
-//Instantiate new Category
-$category = new Category($db);
 
 //Get raw data
 
@@ -18,7 +16,7 @@ if($category->create()){
 
     //Create array of new Category
     $category_arr = array(
-    'id'=> $category->id,
+    'id' => $category->id,
     'category' => $category->category
 );
 

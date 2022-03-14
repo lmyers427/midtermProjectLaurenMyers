@@ -1,27 +1,28 @@
 <?php
 
-//Instantiate new Author
-//$author = new Author($db);
-
 //Get raw posted data
 
 $data = json_decode(file_get_contents("php://input"));
 
 //Set ID to update
-$author->id = $data->id;
+$author->id = isset($data->id) ? $data->id : die("Quote not entered");
 
 //Delete Author
 
 if($author->delete()){
 
-    echo json_encode(
-        array('message' => 'Author Deleted')
+    $authorDeleted_arr = array(
+        'id' => $author->id,
     );
+    
+    print_r(json_encode($authorDeleted_arr));
+
+   
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Author Not Deleted')
+        array('message' => 'Author not Deleted')
     );
 }
