@@ -1,26 +1,27 @@
 <?php
 
-//Instantiate new Author
-//$author = new Author($db);
-
 //Get raw posted data
 
 $data = json_decode(file_get_contents("php://input"));
 
-$author->author = $data->author;
+$author->author = isset($data->author) ? $data->author : die("Missing Required Parameters");
 
 //Create Author
 
 if($author->create()){
 
-    echo json_encode(
-        array('message' => 'Author Created')
+    $authorCreated_arr = array(
+        'id' => $author->id,
+        'author' => $author->author
     );
+    
+    print_r(json_encode($authorCreated_arr));
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Post Not Created')
+        array('message' => 'Error Occured: Quote Not Created')
     );
 }
+     

@@ -1,8 +1,5 @@
 <?php
 
-//Instantiate new Category
-$category = new Category($db);
-
 //Get raw posted data
 
 $data = json_decode(file_get_contents("php://input"));
@@ -12,18 +9,22 @@ $category->id = $data->id;
 
 $category->category = $data->category;
 
-//Update Author
+//Update Category
 
 if($category->update()){
 
-    echo json_encode(
-        array('message' => 'Author Updated')
+    $categoryUpdated_arr = array(
+        'id' => $category->id,
+        'category' => $category->category
+        
     );
+    
+    print_r(json_encode($categoryUpdated_arr));
 
 
 } else {
 
     echo json_encode(
-        array('message' => 'Author Not Updated')
+        array('message' => 'Error Occured Author Not Updated')
     );
 }

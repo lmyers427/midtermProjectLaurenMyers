@@ -32,7 +32,7 @@ switch ($method) {
 
     case 'GET' && isset($_GET['id']):
 
-       $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
+       $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Parameters');
 
 
         $quoteIdExists = isValid($id, $quote);
@@ -54,9 +54,9 @@ switch ($method) {
 
     case 'GET' && isset($_GET['authorId']) && isset($_GET['categoryId']):
 
-        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Id Parameter');
+        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameters');
 
-        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Id Parameter');
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameters');
 
         $authorExists = isValid($authorId, $quote);
         $categoryExists = isValid($categoryId, $quote);
@@ -78,7 +78,7 @@ switch ($method) {
     case 'GET' && isset($_GET['authorId']):
 
         
-        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Id Parameter');
+        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameters');
 
 
 
@@ -103,7 +103,7 @@ switch ($method) {
     case 'GET' && isset($_GET['categoryId']):
 
         
-        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Id Parameter');
+        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Parameters');
 
 
 
@@ -132,19 +132,52 @@ switch ($method) {
         break;
 
     case 'POST':
+
+        //Get raw posted data
+
+         $data = json_decode(file_get_contents("php://input"));
+
+         $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameters');
        
+         $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameters');
+       
+         $authorExists = isValid($authorId, $quote);
+         $categoryExists = isValid($categoryId, $quote);
+
+
+         if(!$authorExists){
+
+            echo json_encode(
+                array('message' => 'authorId Not Found')
+            );
+        }
+
+        elseif(!$categoryExists){
+
+            echo json_encode(
+                array('message' => 'categoryId Not Found')
+            );
+        }
+        else{
+
         include_once 'create.php';
 
-       
+        }
+
         break;
+       
 
     case 'PUT':
 
-        $authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Id Parameter');
+        //Get raw posted data
 
-        $categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die('Missing Required Id Parameter');
+        $data = json_decode(file_get_contents("php://input"));
 
-        $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
+        $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameters');
+
+        $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameters');
+
+        $id = isset($data->id) ? $data->id : die('Missing Required Parameters');
 
 
         $authorExists = isValid($authorId, $quote);
@@ -158,7 +191,7 @@ switch ($method) {
             );
         }
 
-        elseif (!$categoryExists){
+        elseif(!$categoryExists){
 
             echo json_encode(
                 array('message' => 'categoryId Not Found')

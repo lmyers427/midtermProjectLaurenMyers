@@ -30,7 +30,7 @@ switch ($method) {
     case 'GET' && isset($_GET['id']):
 
 
-        $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Id Parameter');
+        $id = isset($_GET['id']) ? $_GET['id'] : die('Missing Required Parameters');
 
 
         $authorExists = isValid($id, $author);
@@ -63,8 +63,26 @@ switch ($method) {
 
     case 'PUT':
 
-        include_once 'update.php';
-        break;
+        $data = json_decode(file_get_contents("php://input"));
+
+        $id = isset($data->id) ? $data->id : die('Missing Required Parameters');
+
+
+        $authorExists = isValid($id, $author);
+        
+        if(!$authorExists){
+
+            echo json_encode(
+                array('message' => 'authorId Not Found')
+            );
+    
+            }
+            else{
+    
+                include_once 'update.php';
+            }
+    
+            break;
 
     case 'DELETE':
 

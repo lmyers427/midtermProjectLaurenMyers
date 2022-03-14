@@ -1,15 +1,13 @@
 <?php
 
-//Instantiate new Quote
-//$quote = new Quote($db);
 
 //Get raw data
 
  $data = json_decode(file_get_contents("php://input"));
 
  $quote->quote = isset($data->quote) ? $data->quote : die("Missing Required Parameters");
- $quote->categoryId = isset($data->categoryId) ? $data->categoryId : die("Missing Required Parameter");
- $quote->authorId = isset($data->authorId) ? $data->authorId : die("Missing Required Parameter");
+ $quote->categoryId = isset($data->categoryId) ? $data->categoryId : die("Missing Required Parameters");
+ $quote->authorId = isset($data->authorId) ? $data->authorId : die("Missing Required Parameters");
  
 
 //Create Quote

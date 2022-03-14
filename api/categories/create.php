@@ -7,7 +7,7 @@ $category = new Category($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$category->category = $data->category;
+$author->category = isset($data->category) ? $data->category : die("Missing Required Parameters");
 
 
 
@@ -18,7 +18,7 @@ if($category->create()){
 
     //Create array of new Category
     $category_arr = array(
-    //'id'=> $category->id,
+    'id'=> $category->id,
     'category' => $category->category
 );
 
