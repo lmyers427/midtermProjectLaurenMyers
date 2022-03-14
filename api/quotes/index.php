@@ -133,41 +133,37 @@ switch ($method) {
 
     case 'POST':
 
-        // //Get raw posted data
+        //Get raw posted data
 
-        //  $data = json_decode(file_get_contents("php://input"));
+         $data = json_decode(file_get_contents("php://input"));
 
-        //  $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameter');
+         $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameter');
 
-        //  $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
+         $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
  
-        //  $quote = isset($data->quote) ? $data->quote : die('Missing Required Parameter');
- 
- 
-        //  $authorExists = isValid($authorId, $quote);
-        //  $categoryExists = isValid($categoryId, $quote);
+      
+         $authorExists = isValid($authorId, $quote);
+         $categoryExists = isValid($categoryId, $quote);
 
 
-        //  if(!$authorExists){
+         if(!$authorExists){
 
-        //     echo json_encode(
-        //         array('message' => 'authorId Not Found')
-        //     );
-        // }
+            echo json_encode(
+                array('message' => 'authorId Not Found')
+            );
+        }
 
-        // elseif(!$categoryExists){
+        elseif(!$categoryExists){
 
-        //     echo json_encode(
-        //         array('message' => 'categoryId Not Found')
-        //     );
-        // }
-        // else{
-
-        // include_once 'create.php';
-
-        // }
+            echo json_encode(
+                array('message' => 'categoryId Not Found')
+            );
+        }
+        else{
 
         include_once 'create.php';
+
+        }
 
         break;
 
@@ -224,7 +220,7 @@ switch ($method) {
         $quoteIdExists = isValid($id, $quote);
 
         if(!$quoteIdExists){
-            
+
             echo json_encode(
                 array('message' => 'No Quotes Found')
             );

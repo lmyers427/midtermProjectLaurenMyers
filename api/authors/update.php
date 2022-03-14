@@ -5,17 +5,21 @@
 
 $data = json_decode(file_get_contents("php://input"));
 
-//Set ID to update
-$author->id = isset($data->id) ? $data->id : die("Missing Required Parameters");
-
-$author->author = isset($data->author) ? $data->author : die("Missing Required Parameters");
+//Set ID to update 
+if(isset($_PUT['id']) && isset($_PUT['author'])){
 
 
-//Update Author
+    $author->id = $_PUT['id'];
 
-if($author->update()){
+    $author->author = $_PUT['author'];
+
+
+    //Update Author
+
+    $author->update();
 
     $authorUpdated_arr = array(
+
         'id' => $author->id,
         'author' => $author->author
         
@@ -23,10 +27,13 @@ if($author->update()){
     
     print_r(json_encode($authorUpdated_arr));
 
+  
 
-} else {
+}
+else{
 
     echo json_encode(
-        array('message' => 'Error Occured Author Not Updated')
+        array('message' => 'Missing Required Parameters')
     );
 }
+

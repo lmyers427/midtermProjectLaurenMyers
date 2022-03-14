@@ -62,7 +62,7 @@ switch ($method) {
 
         $data = json_decode(file_get_contents("php://input"));
 
-        $id = isset($data->id) ? $data->id : die('Missing Required Parameters');
+        $id = isset($data->id) ? $data->id : die();
 
 
         $categoryExists = isValid($id, $category);
@@ -74,6 +74,12 @@ switch ($method) {
             );
     
             }
+        elseif(!isset($_PUT['id']) && !isset($_PUT['category'])){
+
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+        }
             else{
     
                 include_once 'update.php';
