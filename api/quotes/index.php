@@ -145,7 +145,7 @@ switch ($method) {
 
          $categoryExists = isValid($categoryId, $quote);
 
-         if(!isset($data->quote) || !isset($data->authorId) || !isset($data->categoryId)){
+         if(!isset($data->quote) || empty($data->quote) || !isset($data->authorId) || empty($data->authorId) || !isset($data->categoryId) || empty($data->categoryId)){
         
             echo json_encode(
                 array('message' => 'Missing Required Parameters')
@@ -199,15 +199,14 @@ switch ($method) {
         $quoteIdExists = isValid($id, $quote);
 
 
-        if(!isset($data->id) || !isset($data->quote) || !isset($data->authorId) || !isset($data->categoryId)){     
-                    
+        if(!isset($data->id) || empty($data->id) || !isset($data->quote) || empty($data->quote) || !isset($data->authorId) || empty($data->authorId) || !isset($data->categoryId) || empty($data->categoryId)){
+        
             echo json_encode(
                 array('message' => 'Missing Required Parameters')
             );
-
-           
-
+    
         }
+
         elseif(!$authorExists){
 
             echo json_encode(
@@ -228,8 +227,8 @@ switch ($method) {
 
         }
         else{
+    
 
-                        
             $quote->id = $data->id;
 
             $quote->quote = $data->quote; 
@@ -239,8 +238,7 @@ switch ($method) {
             $quote->authorId = $data->authorId;
 
             include_once 'update.php';
-           
-   
+          
 
         }
 
