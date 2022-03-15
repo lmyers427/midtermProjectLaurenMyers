@@ -159,13 +159,13 @@ switch ($method) {
                 array('message' => 'categoryId Not Found')
             );
         }
-        elseif(isset($data->authorId) && isset($data->categoryId)){
+        elseif(isset($data->quote) && isset($data->authorId) && isset($data->categoryId)){
         
             $quote->quote = $data->quote;
  
-            $quote->categoryId = $data->category;
+            $quote->categoryId = $data->categoryId;
            
-            $quote->authorId = $data->author; 
+            $quote->authorId = $data->authorId; 
             
             
             include_once 'create.php';
@@ -221,15 +221,15 @@ switch ($method) {
             );
 
         }
-        elseif(isset($id) && isset($data->quote) && isset($authorId) && isset($categoryId)){     
+        elseif(isset($data->id) && isset($data->quote) && isset($data->authorId) && isset($data->categoryId)){     
                     
-            $quote->id = $id;
+            $quote->id = $data->id;
 
             $quote->quote = $data->quote; 
 
-            $quote->categoryId = $categoryId; 
+            $quote->categoryId = $data->categoryId; 
 
-            $quote->authorId = $authorId;
+            $quote->authorId = $data->authorId;
 
             include_once 'update.php';
            

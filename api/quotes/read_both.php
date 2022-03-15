@@ -1,9 +1,5 @@
 <?php
 
-//Instantiate quote object
-
-//$quote = new Quote($db);
-
 //Get categoryID & authorId
 $quote->categoryId = isset($_GET['categoryId']) ? $_GET['categoryId'] : die("CategoryId not entered");
 

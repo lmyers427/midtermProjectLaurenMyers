@@ -1,8 +1,6 @@
 <?php
 
-//Instantiate quote object
 
-//$quote = new Quote($db);
 
 //Get categoryID
 $quote->authorId = isset($_GET['authorId']) ? $_GET['authorId'] : die('Missing Required Parameter');
