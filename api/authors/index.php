@@ -57,8 +57,26 @@ switch ($method) {
         break;
 
     case 'POST':
-        
-        include_once 'create.php';
+
+        $data = json_decode(file_get_contents("php://input"));
+
+        if(isset($data->author)){
+
+            $author->author =  $data->author;
+
+            
+            include_once 'create.php';
+
+
+        }
+        else{
+
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+
+
+        }
 
         break;
 

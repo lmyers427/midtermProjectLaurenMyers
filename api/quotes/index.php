@@ -141,8 +141,8 @@ switch ($method) {
 
          $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
  
-      
          $authorExists = isValid($authorId, $quote);
+
          $categoryExists = isValid($categoryId, $quote);
 
 
@@ -159,9 +159,26 @@ switch ($method) {
                 array('message' => 'categoryId Not Found')
             );
         }
+        elseif(isset($data->authorId) && isset($data->categoryId)){
+        
+            $quote->quote = $data->quote;
+ 
+            $quote->categoryId = $data->category;
+           
+            $quote->authorId = $data->author; 
+            
+            
+            include_once 'create.php';
+
+
+    
+        }
         else{
 
-        include_once 'create.php';
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+   
 
         }
 
@@ -173,11 +190,12 @@ switch ($method) {
 
         $data = json_decode(file_get_contents("php://input"));
 
-        $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameter');
 
-        $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
+        $authorId = $data->authorId;
 
-        $id = isset($data->id) ? $data->id : die('Missing Required Parameter');
+        $categoryId = $data->categoryId; 
+
+        $id =  $data->id; 
 
 
         $authorExists = isValid($authorId, $quote);
@@ -203,9 +221,26 @@ switch ($method) {
             );
 
         }
+        elseif(isset($id) && isset($data->quote) && isset($authorId) && isset($categoryId)){     
+                    
+            $quote->id = $id;
+
+            $quote->quote = $data->quote; 
+
+            $quote->categoryId = $categoryId; 
+
+            $quote->authorId = $authorId;
+
+            include_once 'update.php';
+           
+
+        }
         else{
 
-        include_once 'update.php';
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+   
 
         }
 
