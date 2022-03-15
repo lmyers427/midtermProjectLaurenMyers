@@ -137,16 +137,22 @@ switch ($method) {
 
          $data = json_decode(file_get_contents("php://input"));
 
-         $authorId = isset($data->authorId) ? $data->authorId : die('Missing Required Parameter');
+         $authorId = $data->authorId;
 
-         $categoryId = isset($data->categoryId) ? $data->categoryId : die('Missing Required Parameter');
+         $categoryId = $data->categoryId;
  
          $authorExists = isValid($authorId, $quote);
 
          $categoryExists = isValid($categoryId, $quote);
 
-
-         if(!$authorExists){
+         if(!isset($data->quote) || !isset($data->authorId) || !isset($data->categoryId)){
+        
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+        
+        }
+         elseif(!$authorExists){
 
             echo json_encode(
                 array('message' => 'authorId Not Found')
@@ -159,26 +165,16 @@ switch ($method) {
                 array('message' => 'categoryId Not Found')
             );
         }
-        elseif(isset($data->quote) && isset($data->authorId) && isset($data->categoryId)){
-        
+        else{
+    
             $quote->quote = $data->quote;
- 
+        
             $quote->categoryId = $data->categoryId;
            
             $quote->authorId = $data->authorId; 
             
             
             include_once 'create.php';
-
-
-    
-        }
-        else{
-
-            echo json_encode(
-                array('message' => 'Missing Required Parameters')
-            );
-   
 
         }
 
@@ -202,7 +198,17 @@ switch ($method) {
         $categoryExists = isValid($categoryId, $quote);
         $quoteIdExists = isValid($id, $quote);
 
-        if(!$authorExists){
+
+        if(!isset($data->id) || !isset($data->quote) || !isset($data->authorId) || !isset($data->categoryId)){     
+                    
+            echo json_encode(
+                array('message' => 'Missing Required Parameters')
+            );
+
+           
+
+        }
+        elseif(!$authorExists){
 
             echo json_encode(
                 array('message' => 'authorId Not Found')
@@ -221,8 +227,9 @@ switch ($method) {
             );
 
         }
-        elseif(isset($data->id) && isset($data->quote) && isset($data->authorId) && isset($data->categoryId)){     
-                    
+        else{
+
+                        
             $quote->id = $data->id;
 
             $quote->quote = $data->quote; 
@@ -233,13 +240,6 @@ switch ($method) {
 
             include_once 'update.php';
            
-
-        }
-        else{
-
-            echo json_encode(
-                array('message' => 'Missing Required Parameters')
-            );
    
 
         }
