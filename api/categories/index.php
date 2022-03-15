@@ -65,6 +65,7 @@ switch ($method) {
         $id = isset($data->id) ? $data->id : die();
 
 
+
         $categoryExists = isValid($id, $category);
         
         if(!$categoryExists){
@@ -74,15 +75,21 @@ switch ($method) {
             );
     
             }
-        elseif(!isset($_PUT['id']) && !isset($_PUT['category'])){
+        elseif(isset($_PUT['id']) && isset($_PUT['category'])){
 
-            echo json_encode(
-                array('message' => 'Missing Required Parameters')
-            );
+            $category->id =  $data->id;
+
+            $category->category = $data->category;
+
+
+            include_once 'update.php';
+
         }
             else{
-    
-                include_once 'update.php';
+
+                echo json_encode(
+                    array('message' => 'Missing Required Parameters')
+                );
             }
     
             break;
