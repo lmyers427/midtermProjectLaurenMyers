@@ -1,22 +1,7 @@
 <?php
 
-
-//Get raw posted data
-
-$data = json_decode(file_get_contents("php://input"));
-
-//Set ID to update 
-if(isset($_PUT['id']) && isset($_PUT['author'])){
-
-
-    $author->id = $_PUT['id'];
-
-    $author->author = $_PUT['author'];
-
-
-    //Update Author
-
-    $author->update();
+//Update Author
+ if($author->update()){
 
     $authorUpdated_arr = array(
 
@@ -33,7 +18,7 @@ if(isset($_PUT['id']) && isset($_PUT['author'])){
 else{
 
     echo json_encode(
-        array('message' => 'Missing Required Parameters')
+        array('message' => 'Not able to Update Authors')
     );
 }
 

@@ -78,9 +78,20 @@ switch ($method) {
             );
     
             }
+        elseif(isset($data->id) && isset($data->author)){
+
+            $author->id = $data->id;
+
+            $author->author = $data->author;
+
+            include_once 'update.php';
+
+        }
             else{
     
-                include_once 'update.php';
+                echo json_encode(
+                    array('message' => 'Missing Required Parameters')
+                );
             }
     
             break;

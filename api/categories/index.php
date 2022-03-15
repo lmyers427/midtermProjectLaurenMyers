@@ -64,8 +64,6 @@ switch ($method) {
 
         $id = isset($data->id) ? $data->id : die();
 
-
-
         $categoryExists = isValid($id, $category);
         
         if(!$categoryExists){
@@ -75,7 +73,7 @@ switch ($method) {
             );
     
             }
-        elseif(isset($_PUT['id']) && isset($_PUT['category'])){
+        elseif(isset($data->id) && isset($data->category)){
 
             $category->id =  $data->id;
 
